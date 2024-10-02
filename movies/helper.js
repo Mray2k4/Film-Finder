@@ -1,3 +1,48 @@
+// Populate dropdown menu with all the available genres
+const populateGenreDropdown = (genres) => {
+    const select = document.getElementById('genres')
+
+    for (const genre of genres) {
+        let option = document.createElement("option");
+        option.value = genre.id;
+        option.text = genre.name;
+        select.appendChild(option);
+    }
+};
+
+// Returns the current genre selection from the dropdown menu
+const getSelectedGenre = () => {
+    const selectedGenre = document.getElementById('genres').value;
+    return selectedGenre;
+};
+
+// Displays the like and dislike buttons on the page
+const showBtns = () => {
+    const btnDiv = document.getElementById('likeOrDislikeBtns');
+    btnDiv.removeAttribute('hidden');
+};
+
+// Clear the current movie from the screen
+const clearCurrentMovie = () => {
+    const moviePosterDiv = document.getElementById('moviePoster');
+    const movieTextDiv = document.getElementById('movieText');
+    moviePosterDiv.innerHTML = '';
+    movieTextDiv.innerHTML = '';
+}
+
+// After liking a movie, clears the current movie from the screen and gets another random movie
+const likeMovie = () => {
+    clearCurrentMovie();
+    showRandomMovie();
+};
+
+// After disliking a movie, clears the current movie from the screen and gets another random movie
+const dislikeMovie = () => {
+    clearCurrentMovie();
+    showRandomMovie();
+};
+
+// Create HTML for movie poster
 const createMoviePoster = (posterPath) => {
     const moviePosterUrl = `https://image.tmdb.org/t/p/original/${posterPath}`;
 
